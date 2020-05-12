@@ -10,7 +10,7 @@ def get_neighbors(particles, r, x0, y0):
 	neighbors = []
 
 	for j,(x1,y1) in enumerate(particles):
-		dist = euclidean_distance(x0, y0, x1, y1)
+		dist = torus_distance(x0, y0, x1, y1)
 
 		if dist < r:
 			neighbors.append(j)

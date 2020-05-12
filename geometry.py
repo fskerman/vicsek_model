@@ -37,3 +37,10 @@ def unit_vector(v1, v2):
 # Euclidean distance between (x,y) coordinates
 def euclidean_distance(x1, y1, x2, y2):
 	return sqrt((x1 - x2)**2 + (y1 - y2)**2)
+
+# Euclidean distance between (x,y) coordinates on 1 x 1 torus
+def torus_distance(x1, y1, x2, y2):
+	x_diff = min(abs(x1 - x2), 1 - abs(x1 - x2))
+	y_diff = min(abs(y1 - y2), 1 - abs(y1 - y2))
+	return sqrt(x_diff**2 + y_diff**2)
+
