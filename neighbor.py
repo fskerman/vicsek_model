@@ -30,9 +30,9 @@ def get_average(thetas, neighbors):
 		theta_vec = angle_2_vector(theta)
 		avg_vector += theta_vec
 
-	avg_vector = avg_vector / n_neighbors
+	avg_angle = vector_2_angle(avg_vector)
 
-	return avg_vector
+	return avg_angle
 
 
 

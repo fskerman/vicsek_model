@@ -74,14 +74,14 @@ if __name__ == '__main__':
     if not os.path.exists(plotdir):
         os.mkdir(os.path.join(simdir, "plots"))
             
-    N = 100           # num of particles
-    eta = 0.2        # noise in [0,1]
-    r = 0.5          # radius
-    delta_t = 0.05   # time step
+    N = 40           # num of particles
+    eta = 0.2       # noise in [0,1]
+    r = 0.1          # radius
+    delta_t = 0.01   # time step
 
     # Maximum time
     t = 0.0
-    T = 5.0
+    T = 1.0
 
     # Generate random particle coordinates
     # particles[i,0] = x
@@ -110,19 +110,19 @@ if __name__ == '__main__':
             # get neighbor indices for current particle
             neighbors = get_neighbors(particles, r, x, y)
 
-            # get average theta vector
+            # get average theta angle
             avg = get_average(thetas, neighbors)
 
-            # get noise vector
-            nx = rand_angle()
-            ny = rand_angle()
-            noise = eta * np.array([nx,ny])
+            # get noise angle
+            n_angle = rand_angle()
 
-            # move to new position 
-            particles[i,:] += delta_t * (avg + noise)
+            noise = eta * n_angle
 
             # get new theta
-            thetas[i] = vector_2_angle(avg + noise)
+            thetas[i] = avg + noise
+
+            # move to new position 
+            particles[i,:] += delta_t * angle_2_vector(thetas[i])
 
             # assure correct boundaries (xmax, ymax) = (1,1)
             if particles[i, 0] < 0:
